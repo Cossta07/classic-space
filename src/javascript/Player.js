@@ -20,7 +20,7 @@ export default class Player{
     }
     draw(ctx) {
         if (this.shootPressed) {
-            this.bulletController.shoot(this.x + this.width / 2, this.y, 4, 18);
+            this.bulletController.shoot(this.x + this.width / 2, this.y, 4, 10);
         }
         this.move();
         this.collideWith();
