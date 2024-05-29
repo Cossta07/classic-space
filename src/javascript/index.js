@@ -26,6 +26,19 @@ const player = new Player(canvas, 3, playerBulletController);
 let isGamerOver = false;
 let didWin = false; 
 
+function game() {
+    checkGameOver();
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height); 
+    displayGameOver();
+
+    if(isGamerOver) {
+        EnemyController.draw(ctx);
+        player.draw(ctx);
+        playerBulletController.draw(ctx);
+        EnemyController.draw(ctx);
+    }
+}
+
 function checkGameOver() {
     if (isGamerOver) {
         return;
@@ -53,3 +66,5 @@ function checkGameOver() {
     ctx.filltext(text, canvas.width / textOffset, canvas.height / 2); 
     }}
     }
+
+    setInterval(game, 1000/60);
