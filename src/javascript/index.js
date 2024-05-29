@@ -43,4 +43,13 @@ function checkGameOver() {
         didWin = true;
         isGamerOver = true;
     }
+
+    function displayOver() {
+        if(isGamerOver) {
+            let text = didWin ? "Você Ganhou!" : "Game Over";
+    let textOffset = didWin ? 5 : 3.6;
+    ctx.fillStyle = "white";
+    ctx.font = "35px 'Press Start 2P'";
+    ctx.filltext(text, canvas.width / textOffset, canvas.height / 2); 
+    }}
     }
