@@ -1,7 +1,6 @@
 import EnemyController from "./EnemyController.js";
 import EnemyController from "./BulletController.js";
 import Player from "./Player.js";
-import BulletController from "./BulletController.js";
 
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
@@ -13,7 +12,7 @@ const background = new Image();
 background.src = "./src/assets/imagens/space.png";
 
 const playerBulletController = new BulletController(canvas, 10, "white", true);
-const enemyBulletController = new EnemyController(canvas, 4, "red", false);
+const enemyBulletController = new EnemyController(canvas, 4, "red", true);
 
 const EnemyController = new EnemyController(
     canvas,
@@ -56,15 +55,15 @@ function checkGameOver() {
         didWin = true;
         isGamerOver = true;
     }
-
-    function displayOver() {
+}
+    function displayGameOver() {
         if(isGamerOver) {
             let text = didWin ? "Você Ganhou!" : "Game Over";
     let textOffset = didWin ? 5 : 3.6;
     ctx.fillStyle = "white";
     ctx.font = "35px 'Press Start 2P'";
     ctx.filltext(text, canvas.width / textOffset, canvas.height / 2); 
-    }}
+    }
     }
 
     setInterval(game, 1000/60);

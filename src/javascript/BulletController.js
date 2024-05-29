@@ -1,4 +1,5 @@
 import Bullet from "./Bullet.js";
+
 export default class BulletController {
     bullets = [];
     timeTillNextBulletAllowed = 0 
@@ -10,7 +11,7 @@ constructor(canvas, maxBulletAtaTime,
         this.bulletColor = bulletcolor;
         this.soundEnable = soundEnable;
       
-        this.bulletSound = new Audio("src/assets/sounds/shoot.wav")
+        this.bulletSound = new Audio("src/assets/sounds/shoot.wav");
         this.bulletSound.volume = 0.1;
     }
 

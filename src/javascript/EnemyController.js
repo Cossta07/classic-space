@@ -26,7 +26,7 @@ export default class EnemyController {
         this.enemyBulletController = enemyBulletController;
         this.playerBulletController = playerBulletController
         this.enemyDeathSound = new Audio("src/assests/soudns/enemy-death.wav");
-        this.enemyDeathSound.volume = 0.1;
+        this.enemyDeathSound.volume = 0.2;
         
         this.createEnemies();
         
@@ -46,7 +46,7 @@ export default class EnemyController {
                 if(this.playerBulletController.collideWith(enemy)){
                     this.enemyDeathSound.currentTime = 0;
                     this.enemyDeathSound.play();
-                    enemyRow.splice(enemyIndex,1);
+                    enemyRow.splice(enemyIndex, 1);
                 }
             })
         });
@@ -55,10 +55,10 @@ export default class EnemyController {
 
     fireBullet() {
         this.fireBulletTimer--;
-        if(this.fireBullet <= 0) {
+        if(this.fireBulletTimer <= 0) {
             this.fireBulletTimer = this.fireBulletTimerDefault;
             const allEnemies = this.enemyRows.flat();
-            const randomEnemy = allEnemies[Math.floor(Math.random() * allEnemies.length)];
+            const enemyIndex = Math.floor(Math.random() * allEnemies.length);
             const enemy = allEnemies[enemyIndex];
             this.enemyBulletController.shoot(enemy.x + enemy.with / 2, enemy.y, -3)
         }
@@ -84,11 +84,11 @@ export default class EnemyController {
             if(this.moveDownTimer <= 0) {
             this.currentDirection = newDirection;
             return true;
-            } else  {
+            }  
             return false;
-            }
-            }
             
+            }
+
             drawEnemies(ctx) {
                 this.enemyRows.flat().forEach((enemy) => {
                 enemy.move(this.xVelocity, this.yVelocity)
@@ -107,8 +107,8 @@ export default class EnemyController {
                             this.enemyRows[rowIndex].push 
                             (new Enemy(enemyIndex * 50,rowIndex * 35, enemyNumber));
                         }
-                    })
-                })
+                    });
+                });
             } 
             
             
@@ -125,8 +125,8 @@ export default class EnemyController {
                 this.currentDirection = MovingDirection.downLeft;
                 break;
                 }
-                } else if(this.currentDirection === MovingDirection.downLeft) {
-                if(this.moveDown(MoveDirection.left)) {
+                } else if(this.currentDirection === MovingDirection.downleft) {
+                if(this.moveDown(MovingDirection.left)) {
                 break;
                 }
                 } else if(this.currentDirection === MovingDirection.left) {

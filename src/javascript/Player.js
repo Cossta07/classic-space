@@ -23,18 +23,18 @@ export default class Player{
             this.bulletController.shoot(this.x + this.width / 2, this.y, 4, 10);
         }
         this.move();
-        this.collideWith();
+        this.collideWithWalls();
         ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
     move() {
         if(this.rightPressed){
             this.x += this.velocity;
         }else if (this.leftPressed){
-            this.x -= this.velocity;
+            this.x += this.velocity;
         }
     }
 
-    collideWith(){
+    collideWithWalls(){
         if(this.x < 0){
             this.x = 0;
         }
@@ -52,7 +52,7 @@ export default class Player{
         if(event.code == "Space") {
             this.shootPressed = true;
         }
-    }
+    };
     keyUp = (event) => {
         if(event.code == "ArrowRight") {
             this.rightPressed = false;
@@ -63,6 +63,6 @@ export default class Player{
         if(event.code == "Space") {
             this.shootPressed = false;
         }
-    }
+    };
 
 }
