@@ -2,7 +2,8 @@ import Bullet from "./Bullet.js";
 
 export default class BulletController {
     bullets = [];
-    timeTillNextBulletAllowed = 0 
+    timeTillNextBulletAllowed = 0 ;
+    
 constructor(canvas, maxBulletAtaTime,
     bulletcolor, soundEnable){
 

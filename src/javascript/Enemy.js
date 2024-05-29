@@ -23,7 +23,7 @@ export default class Enemy {
             this.y < sprite.y + sprite.height
         ) {
         return true;
-        } else {
+        }
             return false;
 
- }}}
+ }}

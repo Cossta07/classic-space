@@ -48,7 +48,7 @@ export default class EnemyController {
                     this.enemyDeathSound.play();
                     enemyRow.splice(enemyIndex, 1);
                 }
-            })
+            });
         });
         this.enemyRows = this.enemyRows.filter((enemyRow) => enemyRow.length > 0);
     }
@@ -71,8 +71,8 @@ export default class EnemyController {
 
     decrementMoveDownTimer(){
         if(
-        this.currentDirection === MovingDirection.downLeft ||
-        this.currentDirection === MovingDirection.downRight
+        this.currentDirection === MovingDirection.downleft ||
+        this.currentDirection === MovingDirection.downright
         ){
         this.moveDownTimer--;
         }
