@@ -15,9 +15,9 @@ const playerBulletController = new BulletController(canvas, 10, "white", true);
 const enemyBulletController = new BulletController(canvas, 4, "red", true);
 
 const enemyController = new EnemyController(
-    canvas,
-    enemyBulletController,
-    playerBulletController
+  canvas,
+  enemyBulletController,
+  playerBulletController
 );
 
 const player = new Player(canvas, 3, playerBulletController);
@@ -26,46 +26,45 @@ let isGameOver = false;
 let didWin = false;
 
 function game() {
-    checkGameOver();
-    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-    displayGameOver();
-    
-    if (!isGameOver) {
-        enemyController.draw(ctx);
-        player.draw(ctx);
-        playerBulletController.draw(ctx);
-        enemyBulletController.draw(ctx);
-    }
+  checkGameOver();
+  ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+  displayGameOver();
+
+  if(!isGameOver) {
+    enemyController.draw(ctx);
+    player.draw(ctx);
+    playerBulletController.draw(ctx);
+    enemyBulletController.draw(ctx);
+  }
 }
 
 function checkGameOver() {
-    if (isGameOver) {
-        return;
-    }
-    
-    if (enemyBulletController.collideWith(player)) {
-        isGameOver = true;
-    }
+  if(isGameOver) {
+    return;
+  }
 
-    if (enemyController.collideWith(player)) {
-        isGameOver = true;
-    }
+  if(enemyBulletController.collideWith(player)){
+    isGameOver = true;
+  }
 
-    if (enemyController.enemyRows.length === 0) {
-        didWin = true;
-        isGameOver = true;
-    }
+  if(enemyController.collideWith(player)) {
+    isGameOver = true;
+  }
+
+  if(enemyController.enemyRows.length === 0) {
+    didWin = true;
+    isGameOver = true;
+  }
 }
 
 function displayGameOver() {
-    if (isGameOver) {
-        let text = didWin ? "Você Ganhou!" : "Game Over";
-        let textOffset = didWin ? 5 : 3.6;
-
-        ctx.fillStyle = "white";
-        ctx.font = "35px 'Press Start 2P'";
-        ctx.fillText(text, canvas.width / textOffset, canvas.height / 2);
-    }
+  if(isGameOver) {
+    let text = didWin ? "Você Ganhou!" : "Game Over";
+    let textOffset = didWin ? 5 : 3.6;
+    ctx.fillStyle = "white";
+    ctx.font = "35px 'Press Start 2P'";
+    ctx.fillText(text, canvas.width / textOffset, canvas.height / 2);
+  }
 }
 
 setInterval(game, 1000 / 60);
