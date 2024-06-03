@@ -4,4 +4,5 @@ const MovingDirection = {
     downLeft: 2,
     downRight: 3,
 };
+
 export default MovingDirection;

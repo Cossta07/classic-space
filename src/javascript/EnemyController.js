@@ -1,18 +1,16 @@
-import Enemy from './Enemy.js';
-import MovingDirection from './MovingDirection.js';
+import Enemy from "./Enemy.js";
+import MovingDirection from "./MovingDirection.js";
 
 export default class EnemyController {
     enemyMap = [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 2, 2, 2, 2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2, 2, 2, 2, 2],
-        [2, 2, 2, 2, 2, 2, 2, 2, 2],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [2, 2, 2, 3, 3, 3, 3, 2, 2, 2],
+        [2, 2, 2, 3, 3, 3, 3, 2, 2, 2],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
     ];
     enemyRows = [];
-
     currentDirection = MovingDirection.right;
     xVelocity = 0;
     yVelocity = 0;
@@ -28,7 +26,7 @@ export default class EnemyController {
         this.enemyBulletController = enemyBulletController;
         this.playerBulletController = playerBulletController;
         this.enemyDeathSound = new Audio("src/assets/sounds/enemy-death.wav");
-        this.enemyDeathSound.volume = 0.1;
+        this.enemyDeathSound.volume = 0.2;
 
         this.createEnemies();
     }
@@ -47,7 +45,7 @@ export default class EnemyController {
             enemyRow.forEach((enemy, enemyIndex) => {
                 if (this.playerBulletController.collideWith(enemy)) {
                     this.enemyDeathSound.currentTime = 0;
-                    http://this.enemyDeathSound.play();
+                    this.enemyDeathSound.play();
                     enemyRow.splice(enemyIndex, 1);
                 }
             });
@@ -87,7 +85,7 @@ export default class EnemyController {
                 this.xVelocity = this.defaultXVelocity;
                 this.yVelocity = 0;
                 const rightMostEnemy = enemyRow[enemyRow.length - 1];
-                if (rightMostEnemy.x + rightMostEnemy.width > this.canvas.width) {
+                if (rightMostEnemy.x + rightMostEnemy.width >= this.canvas.width) {
                     this.currentDirection = MovingDirection.downLeft;
                     break;
                 }
@@ -99,7 +97,7 @@ export default class EnemyController {
                 this.xVelocity = -this.defaultXVelocity;
                 this.yVelocity = 0;
                 const leftMostEnemy = enemyRow[0];
-                if (leftMostEnemy.x < 0) {
+                if (leftMostEnemy.x <= 0) {
                     this.currentDirection = MovingDirection.downRight;
                     break;
                 }
@@ -128,8 +126,6 @@ export default class EnemyController {
             enemy.draw(ctx);
         });
     }
-
-    happy = () => {};
 
     createEnemies() {
         this.enemyMap.forEach((row, rowIndex) => {
